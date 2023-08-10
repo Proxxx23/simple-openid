@@ -5,7 +5,7 @@ This package is designed to utilise OpenId 2.0 in a lightweight and easy way.
 To run it, example for Steam API:
 
 ```
-import { OpenIdClient } from 'simple-openid';
+import { OpenIdClient } from 'lightweight-openid';
 
 const client = new OpenIdClient();
 const STEAM_OPENID_URL = 'https://steamcommunity.com/openid';
