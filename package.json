@@ -1,0 +1,44 @@
+{
+  "name": "lightweight-openid",
+  "version": "1.0.1",
+  "description": "Simple and lightweight OpenID 2.0 client for Node.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "type": "module",
+  "files": [
+    "build/index.js",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Proxxx23/simple-openid"
+  },
+  "keywords": [
+    "openid",
+    "open-id"
+  ],
+  "author": "Łukasz Matusik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Proxxx23/simple-openid/issues"
+  },
+  "homepage": "https://github.com/Proxxx23/simple-openid",
+  "scripts": {
+    "test": "jest --maxWorkers=4 --workerIdleMemoryLimit=0.2",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@types/node": "^18.17.4",
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "@types/luxon": "^3.3.1",
+    "jest": "^29.6.2",
+    "luxon": "^3.4.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6"
+  }
+}
