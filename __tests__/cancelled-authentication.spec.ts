@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import { OpenIdClient } from '../src/client';
+import { OpenIdClient } from '../src/index';
 
 describe('Cancelled OpenID 2.0 authentication', () => {
   it('Does not authenticate cancelled verification', async () => {

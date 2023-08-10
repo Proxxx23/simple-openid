@@ -1,12 +1,13 @@
 {
   "name": "lightweight-openid",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "description": "Simple and lightweight OpenID 2.0 client for Node.js",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "type": "module",
   "files": [
     "build/index.js",
+    "build/index.d.ts",
     "LICENSE",
     "README.md",
     "package.json"

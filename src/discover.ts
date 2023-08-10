@@ -1,5 +1,5 @@
 import { resolveXri } from './xrds';
-import type { Provider } from './client';
+import { Provider } from './index';
 
 const normalizeUrlIdentifier = (identifier: string): string | undefined => {
   let parsedIdentifier = identifier.replaceAll(/^\s+|\s+$/g, '');

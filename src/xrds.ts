@@ -1,5 +1,5 @@
-import type { Provider } from './client';
 import { get } from './http';
+import { Provider } from './index';
 
 type ParsedService = {
   priority: number,

@@ -1,5 +1,5 @@
 import { discover } from '../src/discover';
-import { OpenIdClient } from '../src/client';
+import { OpenIdClient } from '../src/index';
 
 const RETURN_URL = 'https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish';
 const STEAM_OPENID_IDENTIFIER = 'https://steamcommunity.com/openid';

@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 import * as crypto from 'crypto';
-import { OpenIdClient } from '../src/client';
+import { OpenIdClient } from '../src/index';
 
 const STEAM_OPENID_URI = 'https://steamcommunity.com/openid';
 const RETURN_URL = 'https://account.yougov.com/en/account/safe/connect-oauth/steam-library/finish';
