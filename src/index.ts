@@ -1,8 +1,8 @@
-import * as url from 'url';
 import type { ParsedUrlQuery } from 'querystring';
 import type { UrlWithParsedQuery } from 'url';
 import { discover } from './discover';
 import type { OpenId, ProviderResponse } from './openid';
+import url from 'url';
 
 const FIVE_MINUTES_IN_MS = 300000; // microseconds
 

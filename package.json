@@ -1,16 +1,19 @@
 {
   "name": "lightweight-openid",
-  "version": "1.0.8",
+  "version": "1.0.24",
   "description": "Simple and lightweight OpenID 2.0 client for Node.js",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
-  "type": "module",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "files": [
-    "build/index.js",
-    "build/index.d.ts",
-    "LICENSE",
-    "README.md",
-    "package.json"
+    "./build/index.js",
+    "./build/discover.js",
+    "./build/http.js",
+    "./build/openid.js",
+    "./build/xrds.js",
+    "./build/index.d.ts",
+    "./LICENSE",
+    "./README.md",
+    "./package.json"
   ],
   "repository": {
     "type": "git",
@@ -31,12 +34,12 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@types/node": "^18.17.4",
     "axios": "^1.4.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.3",
     "@types/luxon": "^3.3.1",
+    "@types/node": "^18.17.4",
     "jest": "^29.6.2",
     "luxon": "^3.4.0",
     "ts-jest": "^29.1.1",

@@ -1,3 +1,7 @@
+# Important Note! #
+
+This package works from version 1.0.24 and above. If you are using older version, please update.
+
 # simple-openid
 
 This package is designed to utilise OpenId 2.0 in a lightweight and easy way.
