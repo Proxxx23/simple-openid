@@ -1,5 +1,5 @@
 import { discover } from '../src/discover';
-import { OpenIdClient } from '../src/index';
+import { SteamOpenIdClient } from '../src/index';
 
 const RETURN_URL = 'https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish';
 const STEAM_OPENID_IDENTIFIER = 'https://steamcommunity.com/openid';
@@ -15,7 +15,7 @@ describe('OpenID authenticate and discover', () => {
 });
 
 it('Authenticates for Steam OpenID 2.0', async () => {
-  const client = new OpenIdClient();
+  const client = new SteamOpenIdClient();
   const returnUrl = await client.authenticate(STEAM_OPENID_IDENTIFIER, RETURN_URL);
 
   expect(returnUrl).toBeTruthy();

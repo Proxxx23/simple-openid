@@ -14,7 +14,7 @@ export type Provider = {
 type Nonce = `${string}Z${string}`;
 type Nonces = Record<Nonce, Date>;
 
-export class OpenIdClient implements OpenId {
+export class SteamOpenIdClient implements OpenId {
     private nonces: Nonces = {};
 
     async authenticate(identifier: string, returnUrl: string) {

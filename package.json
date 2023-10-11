@@ -1,7 +1,7 @@
 {
-  "name": "lightweight-openid",
-  "version": "1.0.24",
-  "description": "Simple and lightweight OpenID 2.0 client for Node.js",
+  "name": "steam-lightweight-openid",
+  "version": "1.0.0",
+  "description": "Simple and lightweight Steam OpenID 2.0 client for Node.js",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [

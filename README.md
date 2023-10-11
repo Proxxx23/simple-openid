@@ -1,15 +1,11 @@
-# Important Note! #
+# steam-lightweight-openid
 
-This package works from version 1.0.24 and above. If you are using older version, please update.
-
-# simple-openid
-
-This package is designed to utilise OpenId 2.0 in a lightweight and easy way.
+This package is designed to utilise Steam OpenId 2.0 in a lightweight and easy way.
 
 To run it, example for Steam API:
 
 ```
-import { OpenIdClient } from 'lightweight-openid';
+import { OpenIdClient } from 'steam-lightweight-openid';
 
 const client = new OpenIdClient();
 const STEAM_OPENID_URL = 'https://steamcommunity.com/openid';

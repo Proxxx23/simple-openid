@@ -1,12 +1,12 @@
 import * as crypto from 'crypto';
-import { OpenIdClient } from '../src/index';
+import { SteamOpenIdClient } from '../src/index';
 
 describe('Cancelled OpenID 2.0 authentication', () => {
   it('Does not authenticate cancelled verification', async () => {
     const hash = crypto.randomBytes(16).toString('hex');
     const nonce = new Date(Date.now()).toISOString().replace(/\.\d+Z$/, 'Z') + hash; // YYYY-MM-DDTHH:II:SSZ
 
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     const claimedSteamId = 'https://steamcommunity.com/openid/id/76561197994695284'; // https://steamcommunity.com/id/hardstylemaniac111/
 
     await expect(

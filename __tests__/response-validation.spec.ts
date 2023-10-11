@@ -1,13 +1,13 @@
 import { DateTime } from 'luxon';
 import * as crypto from 'crypto';
-import { OpenIdClient } from '../src/index';
+import { SteamOpenIdClient } from '../src/index';
 
 const STEAM_OPENID_URI = 'https://steamcommunity.com/openid';
 const RETURN_URL = 'https://account.yougov.com/en/account/safe/connect-oauth/steam-library/finish';
 
 describe('Steam OpenId Client response validation', () => {
   it('Rejects validation if invalid (non OpenId) URL given', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
 
     await expect(
       client.validateResponse(
@@ -20,7 +20,7 @@ describe('Steam OpenId Client response validation', () => {
   });
 
   it('Rejects validation if Open ID 2.0 URL with no return URL given', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
 
     await expect(
       client.validateResponse(
@@ -33,7 +33,7 @@ describe('Steam OpenId Client response validation', () => {
   });
 
   it('Rejects validation if Open ID 2.0 URL with empty return URL given', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
 
     await expect(
       client.validateResponse(
@@ -46,7 +46,7 @@ describe('Steam OpenId Client response validation', () => {
   });
 
   it('Rejects validation if original return url is an empty string', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     await expect(
       client.validateResponse(
         'https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish/login?openid.return_to=http://example.com/verify',
@@ -58,7 +58,7 @@ describe('Steam OpenId Client response validation', () => {
   });
 
   it('Rejects validation if original return url and Open ID 2.0 return URLs are not complementary (protocols differ)', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     await expect(
       client.validateResponse(
         'https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish/login?openid.return_to=http://yougov.com/redirect',
@@ -70,7 +70,7 @@ describe('Steam OpenId Client response validation', () => {
   });
 
   it('Rejects validation if original return url and Open ID 2.0 return URLs are not complementary (hosts differ)', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     await expect(
       client.validateResponse(
         'https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish/login?openid.return_to=https://yougov.com/redirect',
@@ -82,7 +82,7 @@ describe('Steam OpenId Client response validation', () => {
   });
 
   it('Rejects validation if original return url and Open ID 2.0 return URLs are not complementary (pathnames differ)', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     await expect(
       client.validateResponse(
         'https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish/login?openid.return_to=https://yougov.com/redirect',
@@ -95,7 +95,7 @@ describe('Steam OpenId Client response validation', () => {
 
   // See to-do in steam-openid-client.ts
   it('Rejects validation if original return url and Open ID 2.0 return URLs are not complementary (return_to qs params differ)', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     await expect(
       client.validateResponse(
         'https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish/login?openid.return_to=https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish?foo=bar&baz=zxc',
@@ -107,7 +107,7 @@ describe('Steam OpenId Client response validation', () => {
   });
 
   it('Rejects validation if response nonce is missing', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     await expect(
       client.validateResponse(
         `https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish/login?openid.return_to=${RETURN_URL}`,
@@ -119,7 +119,7 @@ describe('Steam OpenId Client response validation', () => {
   });
 
   it('Rejects validation if response nonce is empty', async () => {
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     await expect(
       client.validateResponse(
         `https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish/login?openid.return_to=${RETURN_URL}&openid.response_nonce=`,
@@ -133,7 +133,7 @@ describe('Steam OpenId Client response validation', () => {
   it('Rejects validation if response nonce has invalid date format', async () => {
     const nonceString = crypto.createHmac('sha256', 'Steam').digest('base64');
     const nonce = new Date(Date.now()) + nonceString;
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
 
     await expect(
       client.validateResponse(
@@ -149,7 +149,7 @@ describe('Steam OpenId Client response validation', () => {
     const nonceString = crypto.createHmac('sha256', 'Steam').digest('base64');
     const nonce = DateTime.fromMillis(Date.now()).minus({ minute: 10 }).toISO({ includeOffset: false })?.replace(/\.\d+/, 'Z') + nonceString; // 10 minutes back
 
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
 
     await expect(
       client.validateResponse(
@@ -167,7 +167,7 @@ describe('Steam OpenId Client response validation', () => {
 
     const nonce = new Date(Date.now()).toISOString().replace(/\.\d+Z$/, 'Z') + nonceString; // YYYY-MM-DDTHH:II:SSZ
 
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     await expect(
       client.validateResponse(`https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish
     ?openid.ns=http://specs.openid.net/auth/2.0
@@ -191,7 +191,7 @@ describe('Steam OpenId Client response validation', () => {
 
     const nonce = new Date(Date.now()).toISOString().replace(/\.\d+Z$/, 'Z') + nonceString; // YYYY-MM-DDTHH:II:SSZ
 
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     await expect(
       client.validateResponse(`https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish
     ?openid.ns=http://specs.openid.net/auth/2.0
@@ -213,7 +213,7 @@ describe('Steam OpenId Client response validation', () => {
     const nonceString = crypto.createHmac('sha256', 'Steam').digest('base64');
     const nonce = new Date(Date.now()).toISOString().replace(/\.\d+Z$/, 'Z') + nonceString; // YYYY-MM-DDTHH:II:SSZ
 
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     const claimedSteamId = 'https://steamcommunity.com/openid/id/76561197994695284'; // https://steamcommunity.com/id/hardstylemaniac111/
 
     const authentication = await client.authenticate(STEAM_OPENID_URI, RETURN_URL);
@@ -262,7 +262,7 @@ describe('Steam OpenId Client response validation', () => {
 
     const secondNonce = new Date(Date.now()).toISOString().replace(/\.\d+Z$/, 'Z') + nonceString; // YYYY-MM-DDTHH:II:SSZ
 
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     const claimedSteamId = 'https://steamcommunity.com/openid/id/76561197994695284'; // https://steamcommunity.com/id/hardstylemaniac111/
 
     const firstValidation = await client.validateResponse(`https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish
@@ -306,7 +306,7 @@ describe('Steam OpenId Client response validation', () => {
     const firstNonce = now + nonceString;
     const secondNonce = now + differentNonceString;
 
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     const claimedSteamId = 'https://steamcommunity.com/openid/id/76561197994695284'; // https://steamcommunity.com/id/hardstylemaniac111/
 
     // first nonce
@@ -352,7 +352,7 @@ describe('Steam OpenId Client response validation', () => {
       .toISO({ includeOffset: true })
       ?.replace(/\.\d+Z$/, 'Z') + nonceString; // nonce generated 2 minutes ago
 
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     const validation = await client.validateResponse(`https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish
     ?openid.ns=http://specs.openid.net/auth/2.0
     &openid.return_to=${RETURN_URL}
@@ -378,7 +378,7 @@ describe('Steam OpenId Client response validation', () => {
 
     const nonce = new Date(Date.now()).toISOString().replace(/\.\d+Z$/, 'Z') + nonceString; // YYYY-MM-DDTHH:II:SSZ
 
-    const client = new OpenIdClient();
+    const client = new SteamOpenIdClient();
     const assertion = await client.validateResponse(`https://account.yougov.com/us-en/account/safe/connect-oauth/steam-library/finish
     ?openid.ns=http://specs.openid.net/auth/2.0
     &openid.return_to=${RETURN_URL}
