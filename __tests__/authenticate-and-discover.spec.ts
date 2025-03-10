@@ -6,7 +6,7 @@ const STEAM_OPENID_IDENTIFIER = 'https://steamcommunity.com/openid';
 
 describe('OpenID authenticate and discover', () => {
   it('Throws on trying to discover an empty identifier', async () => {
-    await expect(discover('')).rejects.toThrowError('Invalid identifier');
+    await expect(discover('')).rejects.toThrow(new Error('Invalid identifier. Tried to normalize: [empty ID]'));
   });
 
   it('Discovers Steam OpenID 2.0 identifier', async () => {

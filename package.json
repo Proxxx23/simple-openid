@@ -1,6 +1,6 @@
 {
   "name": "steam-lightweight-openid",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Simple and lightweight Steam OpenID 2.0 client for Node.js",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -21,7 +21,8 @@
   },
   "keywords": [
     "openid",
-    "open-id"
+    "open-id",
+    "steam"
   ],
   "author": "Łukasz Matusik",
   "license": "MIT",
@@ -34,15 +35,16 @@
     "build": "tsc"
   },
   "dependencies": {
-    "axios": "^1.4.0"
+    "axios": "1.8.2",
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.3",
-    "@types/luxon": "^3.3.1",
-    "@types/node": "^18.17.4",
-    "jest": "^29.6.2",
-    "luxon": "^3.4.0",
-    "ts-jest": "^29.1.1",
-    "typescript": "^5.1.6"
+    "@types/jest": "29.5.14",
+    "@types/luxon": "3.4.2",
+    "@types/node": "22.13.10",
+    "jest": "29.7.0",
+    "luxon": "3.5.0",
+    "ts-jest": "29.2.6",
+    "typescript": "5.8.2"
   }
 }
