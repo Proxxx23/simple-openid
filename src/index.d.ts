@@ -1,5 +1,5 @@
-declare module 'lightweight-openid' {
-    export class OpenIdClient {
+declare module 'steam-lightweight-openid' {
+    export class SteamOpenIdClient {
         authenticate(identifier: string, returnUrl: string): Promise<AuthUrl>;
         validateResponse(responseUrl: string, returnUrl: string): Promise<ProviderResponse>;
     }

@@ -16,6 +16,6 @@ describe('Cancelled OpenID 2.0 authentication', () => {
       )
     )
       .rejects
-      .toThrowError('');
+      .toThrow('');
   });
 });

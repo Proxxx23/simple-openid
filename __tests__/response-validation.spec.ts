@@ -16,7 +16,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('openId.return_to query param is missing in the request URL.');
+      .toThrow('openId.return_to query param is missing in the request URL.');
   });
 
   it('Rejects validation if Open ID 2.0 URL with no return URL given', async () => {
@@ -29,7 +29,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('openId.return_to query param is missing in the request URL.');
+      .toThrow('openId.return_to query param is missing in the request URL.');
   });
 
   it('Rejects validation if Open ID 2.0 URL with empty return URL given', async () => {
@@ -42,7 +42,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('openId.return_to query param is missing in the request URL.');
+      .toThrow('openId.return_to query param is missing in the request URL.');
   });
 
   it('Rejects validation if original return url is an empty string', async () => {
@@ -54,7 +54,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('OpenId Client return url is empty.');
+      .toThrow('OpenId Client return url is empty.');
   });
 
   it('Rejects validation if original return url and Open ID 2.0 return URLs are not complementary (protocols differ)', async () => {
@@ -66,7 +66,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('OpenID Client and OpenID return_to URLs do not match.');
+      .toThrow('OpenID Client and OpenID return_to URLs do not match.');
   });
 
   it('Rejects validation if original return url and Open ID 2.0 return URLs are not complementary (hosts differ)', async () => {
@@ -78,7 +78,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('OpenID Client and OpenID return_to URLs do not match.');
+      .toThrow('OpenID Client and OpenID return_to URLs do not match.');
   });
 
   it('Rejects validation if original return url and Open ID 2.0 return URLs are not complementary (pathnames differ)', async () => {
@@ -90,7 +90,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('OpenID Client and OpenID return_to URLs do not match.');
+      .toThrow('OpenID Client and OpenID return_to URLs do not match.');
   });
 
   // See to-do in steam-openid-client.ts
@@ -103,7 +103,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('Query parameters in OpenID return_to and OpenID Client return URL do not match.');
+      .toThrow('Query parameters in OpenID return_to and OpenID Client return URL do not match.');
   });
 
   it('Rejects validation if response nonce is missing', async () => {
@@ -115,7 +115,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('Missing response nonce.');
+      .toThrow('Missing response nonce.');
   });
 
   it('Rejects validation if response nonce is empty', async () => {
@@ -127,7 +127,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('Missing response nonce.');
+      .toThrow('Missing response nonce.');
   });
 
   it('Rejects validation if response nonce has invalid date format', async () => {
@@ -142,7 +142,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('Response nonce has invalid date format or no date at all.');
+      .toThrow('Response nonce has invalid date format or no date at all.');
   });
 
   it('Rejects validation if response nonce is skewed by more than 5 minutes', async () => {
@@ -158,7 +158,7 @@ describe('Steam OpenId Client response validation', () => {
       )
     )
       .rejects
-      .toThrowError('Response nonce is skewed by more than 5 minutes.');
+      .toThrow('Response nonce is skewed by more than 5 minutes.');
   });
 
   it('Rejects validation without signature in response URL from Steam', async () => {
@@ -181,7 +181,7 @@ describe('Steam OpenId Client response validation', () => {
       RETURN_URL
       ))
       .rejects
-      .toThrowError('No signature in response.');
+      .toThrow('No signature in response.');
   });
 
   it('Rejects validation without claimed_id in response URL from Steam', async () => {
@@ -205,7 +205,7 @@ describe('Steam OpenId Client response validation', () => {
       RETURN_URL
       ))
       .rejects
-      .toThrowError('Could not obtain claimed identifier.');
+      .toThrow('Could not obtain claimed identifier.');
   });
 
   it('Rejects validation if response nonce is replied with the same hash and date', async () => {
@@ -248,7 +248,7 @@ describe('Steam OpenId Client response validation', () => {
       RETURN_URL
       ))
       .rejects
-      .toThrowError('Response nonce has already been used (replayed)');
+      .toThrow('Response nonce has already been used (replayed)');
   });
 
   it('Approves validation if response nonce is replied with the same hash but different date', async () => {
