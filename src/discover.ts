@@ -2,7 +2,7 @@ import { resolveXri } from './xrds';
 import { Provider } from './index';
 
 const normalizeUrlIdentifier = (identifier: string): string | undefined => {
-  let parsedIdentifier = identifier.replaceAll(/^\s+|\s+$/g, '');
+  let parsedIdentifier = identifier.trim();
   if (!parsedIdentifier) {
     return undefined;
   }
@@ -11,7 +11,7 @@ const normalizeUrlIdentifier = (identifier: string): string | undefined => {
     parsedIdentifier = parsedIdentifier.slice(6);
   }
 
-  if (/^[!$(+=@]/.test(parsedIdentifier) || parsedIdentifier.includes('http')) {
+  if (/^[!$(+=@]/.test(parsedIdentifier) || parsedIdentifier.startsWith('http://') || parsedIdentifier.startsWith('https://')) {
     return parsedIdentifier;
   }
 
@@ -25,7 +25,7 @@ export const discover = async (identifier: string): Promise<Provider[]> => {
   }
 
   let updatedUrl = url;
-  if (!url.includes('http')) {
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
     updatedUrl = `https://xri.net/${url}?_xrd_r=application/xrds%2Bxml`; // XRDS
   }
 

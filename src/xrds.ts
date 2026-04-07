@@ -10,8 +10,8 @@ type Service = Partial<{
   uri: string,
 }> & ParsedService;
 
-export const parseXrdsData = (data: string): Service[] => {
-  data = data.replaceAll(/[\n\r]/g, '');
+export const parseXrdsData = (rawData: string): Service[] => {
+  const data = rawData.replaceAll(/[\n\r]/g, '');
   const services: Service[] = [];
   const serviceMatches = data.match(/<Service\s*(priority="\d+")?.*?>(.*?)<\/Service>/g);
 
@@ -19,15 +19,14 @@ export const parseXrdsData = (data: string): Service[] => {
     return services;
   }
 
-  for (let s = 0, len = serviceMatches.length; s < len; ++s) {
-    const service = serviceMatches[s];
-    const svcs: ParsedService[] = [];
-    let svc: Service | undefined;
+  for (const service of serviceMatches) {
+    const svcs: Service[] = [];
 
     const priorityMatch = /<Service.*?priority="(.*?)".*?>/g.exec(service);
     let priority = 0;
     if (priorityMatch) {
-      priority = parseInt(priorityMatch[1], 10);
+      const parsed = parseInt(priorityMatch[1], 10);
+      priority = Number.isNaN(parsed) ? 0 : parsed;
     }
 
     let typeMatch: RegExpExecArray | null = null;
@@ -51,8 +50,7 @@ export const parseXrdsData = (data: string): Service[] => {
     }
 
     for (const srv of svcs) {
-      svc = srv;
-      svc.uri = uriMatch[2];
+      srv.uri = uriMatch[2];
     }
 
     services.push(...svcs);
